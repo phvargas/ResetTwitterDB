@@ -28,6 +28,10 @@ echo
 echo "Creating TABLE tweets ..."
 psql twitterharassment_db -c "CREATE TABLE IF NOT EXISTS tweets (handle  VARCHAR(25) PRIMARY KEY, status INT);"
 
+echo
+echo "Creating TABLE profiles ..."
+psql twitterharassment_db -c "CREATE TABLE IF NOT EXISTS profiles (handle  VARCHAR(25) PRIMARY KEY, status INT);"
+
 echo 
 echo "GRANTING access to USER:wsdl ON TABLE friends ..."
 psql twitterharassment_db -c "GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON friends TO wsdl;"
@@ -37,3 +41,6 @@ psql twitterharassment_db -c "GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON 
 
 echo "GRANTING access to USER:wsdl ON TABLE tweets ..."
 psql twitterharassment_db -c "GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON tweets TO wsdl;"
+
+echo "GRANTING access to USER:wsdl ON TABLE profiles ..."
+psql twitterharassment_db -c "GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON profiles TO wsdl;"

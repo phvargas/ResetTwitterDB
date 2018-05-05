@@ -3,7 +3,7 @@
 
 echo
 echo "Creating database  ..."
-sudo -u postgres psql -c "CREATE DATABASE twitterharassment_db;"
+sudo -u postgres psql -c "CREATE DATABASE IF NOT EXISTS twitterharassment_db;"
 
 echo 
 echo "Creating TABLE status ..."

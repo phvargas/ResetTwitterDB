@@ -3,7 +3,7 @@
 
 echo
 echo "Creating database  ..."
-sudo -u postgres psql -c "CREATE DATABASE IF NOT EXISTS twitterharassment_db;"
+sudo -u postgres psql -c "CREATE DATABASE twitterharassment_db;"
 
 echo 
 echo "Creating TABLE status ..."
@@ -15,6 +15,10 @@ psql twitterharassment_db -c "INSERT INTO status (id, description) VALUES
 				(0, 'Not processed'),
 				(1, 'In progress'),
 				(2, 'Completed');"
+
+echo
+echo "Creating WSDL user account ..."
+createuser wsdl;
 
 echo 
 echo "Creating TABLE friends ..."
@@ -32,6 +36,10 @@ echo
 echo "Creating TABLE profiles ..."
 psql twitterharassment_db -c "CREATE TABLE IF NOT EXISTS profiles (handle  VARCHAR(25) PRIMARY KEY, status INT);"
 
+echo
+echo "Creating TABLE conversations ..."
+psql twitterharassment_db -c "CREATE TABLE IF NOT EXISTS conversations (id  VARCHAR(25) PRIMARY KEY, status INT);"
+
 echo 
 echo "GRANTING access to USER:wsdl ON TABLE friends ..."
 psql twitterharassment_db -c "GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON friends TO wsdl;"
@@ -44,3 +52,6 @@ psql twitterharassment_db -c "GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON 
 
 echo "GRANTING access to USER:wsdl ON TABLE profiles ..."
 psql twitterharassment_db -c "GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON profiles TO wsdl;"
+
+echo "GRANTING access to USER:wsdl ON TABLE profiles ..."
+psql twitterharassment_db -c "GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON conversations TO wsdl;"
